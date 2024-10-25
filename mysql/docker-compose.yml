@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mysql:
+    image: bitnami/mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASES: ${DBNAME}
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
+      TZ: Asia/Shanghai
+      MYSQL_PORT_NUMBER: ${PORT}
+    volumes:
+      - ./_data:/bitnami/mysql/data
+      - ./my.cnf:/opt/bitnami/mysql/conf/my.cnf
+    network_mode: host
+    expose:
+      - '13307'
