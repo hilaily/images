@@ -1,0 +1,9 @@
+services:
+  tinyproxy:
+    image: vimagick/tinyproxy
+    network_mode: host
+    volumes:
+      - ./_data:/etc/tinyproxy
+      - ./tinyproxy.conf:/etc/tinyproxy/tinyproxy.conf
+    restart: unless-stopped
+
