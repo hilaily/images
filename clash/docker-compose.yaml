@@ -1,0 +1,13 @@
+version: "3.7"
+
+# ref: https://github.com/Dreamacro/clash/wiki/Run-clash-in-docker
+
+services:
+  clash:
+    image: docker.13140521.xyz/dreamacro/clash-premium
+    restart: always
+    volumes:
+      - ./_config/config.yaml:/root/.config/clash/config.yaml:ro
+    # When your system is Linux, you can use `network_mode: "host"` directly.
+    network_mode: "host"
+    container_name: clash
