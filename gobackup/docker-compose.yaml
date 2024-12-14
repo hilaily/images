@@ -1,0 +1,8 @@
+services:
+  gobackup:
+    image: huacnlee/gobackup:v2.12.0
+    container_name: gobackup
+    volumes:
+      - ./_data:/etc/gobackup
+    ports:
+      - 2703:2703
