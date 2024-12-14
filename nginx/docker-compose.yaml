@@ -3,6 +3,5 @@ services:
     image: nginx:alpine
     network_mode: host
     volumes:
-     - ./conf.d:/etc/nginx/conf.d
+      - ./conf.d:/etc/nginx/conf.d
     restart: always
-

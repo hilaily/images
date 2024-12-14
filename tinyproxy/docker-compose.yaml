@@ -6,4 +6,3 @@ services:
       - ./_data:/etc/tinyproxy
       - ./tinyproxy.conf:/etc/tinyproxy/tinyproxy.conf
     restart: unless-stopped
-

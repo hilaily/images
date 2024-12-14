@@ -4,7 +4,7 @@ version: "3.7"
 
 services:
   clash:
-    image: docker.13140521.xyz/dreamacro/clash-premium
+    image: dreamacro/clash-premium
     restart: always
     volumes:
       - ./_config/config.yaml:/root/.config/clash/config.yaml:ro

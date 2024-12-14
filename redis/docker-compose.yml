@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   redis:
@@ -7,3 +7,4 @@ services:
     ports:
       - "6379:6379"
     restart: unless-stopped
+
