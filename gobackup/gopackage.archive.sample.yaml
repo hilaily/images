@@ -4,14 +4,19 @@ models:
       type: zst
     archive:
       includes:
-        - /opt/bin/app/
+        - /data/
     storages:
       s3:
         type: s3
         keep: 20
         bucket: backup
-        endpoint: https://oss.yumee.top:10000
+        endpoint: https://oss.xxx.com
         region: us
-        path: vuuu1/
-        access_key_id: $AK
-        secret_access_key: $SK
+        path:
+        access_key_id:
+        secret_access_key:
+    notifiers:
+      feishu:
+        type: feishu
+        url:
+        on_success: false
