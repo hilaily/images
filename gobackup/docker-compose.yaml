@@ -4,6 +4,7 @@ services:
     volumes:
       - xxxx:/data/
       - ./_data:/etc/gobackup
+      - ./gobackup.yaml:/etc/gobackup/gobackup.yml
     ports:
       - 2703:2703
     command: ["gobackup", "perform"]
