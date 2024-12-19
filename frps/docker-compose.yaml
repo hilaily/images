@@ -1,0 +1,8 @@
+services:
+  frps:
+    image: snowdreamtech/frps:0.61.0
+    restart: always
+    network_mode: host
+    volumes:
+      - ./frps.yaml:/etc/frp/frps.yaml
+    command: ["-c", "/etc/frp/frps.yaml"]

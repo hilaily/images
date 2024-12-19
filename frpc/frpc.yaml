@@ -1,0 +1,16 @@
+serverAddr: "a.foo.com"
+serverPort: 17000
+auth:
+  token: "tokenxxx"
+
+proxies:
+  - name: emby
+    type: http
+    localIP: "127.0.0.1"
+    localPort: 8097
+    subdomain: emby
+  - name: qbittorrent
+    type: http
+    localIP: "127.0.0.1"
+    localPort: 8085
+    subdomain: qb

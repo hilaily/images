@@ -1,0 +1,6 @@
+bindPort: 17000
+vhostHTTPPort: 8082
+auth:
+  method: token
+  token: tokenxxx
+subDomainHost: sub.foo.com

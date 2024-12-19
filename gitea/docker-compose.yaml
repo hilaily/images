@@ -1,0 +1,23 @@
+services:
+  server:
+    image: gitea/gitea:1.22.5
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE
+      - GITEA__database__HOST
+      - GITEA__database__NAME
+      - GITEA__database__USER
+      - GITEA__database__PASSWD
+      - "DISABLE_REGISTRATION:true"
+      - "REQUIRE_SIGNIN_VIEW:true"
+    restart: always
+    volumes:
+      - ./_data:/data
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "13100:3000"
+      - "13101:22"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
