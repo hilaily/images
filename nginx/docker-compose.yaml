@@ -5,4 +5,5 @@ services:
     network_mode: host
     volumes:
       - ./conf.d:/etc/nginx/conf.d
+      - ./sslcert:/etc/sslcert
     restart: always
