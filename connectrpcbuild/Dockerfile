@@ -4,7 +4,7 @@ FROM debian:bullseye
 
 # install node 
 # wget -O _data/install_node.sh https://deb.nodesource.com/setup_23.x
-COPY _data/install_node.sh ./install_node.sh
+COPY ./install_node.sh ./install_node.sh
 
 RUN bash install_node.sh && \
 apt-get install -y --no-install-recommends nodejs wget && \
