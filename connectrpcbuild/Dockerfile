@@ -44,7 +44,7 @@ RUN --mount=type=cache,target=/var/cache/go-downloads,sharing=locked \
     go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.35.1 && \
     go install github.com/fullstorydev/grpcurl/cmd/grpcurl@v1.9.1 && \
     go install connectrpc.com/connect/cmd/protoc-gen-connect-go@v1.17.0 && \
-    go install github.com/sudorandom/protoc-gen-connect-openapi/cmd/protoc-gen-connect-openapi@latest && \
+    go install github.com/sudorandom/protoc-gen-connect-openapi@latest && \
     rm -rf /go/pkg /go/src 
 
 # 设置工作目录
