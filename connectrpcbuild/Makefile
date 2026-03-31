@@ -5,7 +5,7 @@ PLATFORMS ?= linux/amd64,linux/arm64
 # BuildKit：启用 Dockerfile 里 Go 下载的 cache mount 复用
 export DOCKER_BUILDKIT=1
 
-.PHONY: help build build-amd64 build-arm64 build-multi prune-buildx-cache
+.PHONY: help prep build build-amd64 build-arm64 build-multi prune-buildx-cache show-arch
 
 help:
 	@echo "Usage:"
@@ -13,20 +13,40 @@ help:
 	@echo "  make build-amd64 IMAGE_NAME=<image_name>"
 	@echo "  make build-arm64 IMAGE_NAME=<image_name>"
 	@echo "  make build-multi IMAGE_NAME=<image_name>"
+	@echo "  make prep PLATFORMS=linux/arm64               # 仅准备环境（QEMU/binfmt）"
+	@echo ""
+	@echo "构建前会自动运行 setup-build-env.sh：按 Docker 引擎架构与目标平台判断是否需要 binfmt（Mac / Linux 通用）。"
+	@echo "  bash setup-build-env.sh --help"
 	@echo ""
 	@echo "Go 安装包会缓存在 BuildKit 中，多次构建通常不会重复下载。"
 	@echo "  make prune-buildx-cache   # 清理 buildx 缓存（含上述缓存）"
 
+prep:
+	bash setup-build-env.sh "$(PLATFORMS)"
+
+show-arch:
+	@echo "uname: $$(uname -m)"
+	@docker info -f 'Docker Architecture: {{.Architecture}}' 2>/dev/null || true
+
 build: build-amd64
 
-build-amd64:
+build-amd64: prep-amd64
 	docker buildx build --platform linux/amd64 -t $(IMAGE_NAME) $(BUILD_CONTEXT)
 
-build-arm64:
+build-arm64: prep-arm64
 	docker buildx build --platform linux/arm64 -t $(IMAGE_NAME) $(BUILD_CONTEXT)
 
-build-multi:
+build-multi: prep-multi
 	docker buildx build --platform $(PLATFORMS) -t $(IMAGE_NAME) $(BUILD_CONTEXT)
+
+prep-amd64:
+	bash setup-build-env.sh linux/amd64
+
+prep-arm64:
+	bash setup-build-env.sh linux/arm64
+
+prep-multi:
+	bash setup-build-env.sh "$(PLATFORMS)"
 
 prune-buildx-cache:
 	docker buildx prune -f
